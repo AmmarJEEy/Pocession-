@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Only For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  width:100%;
+  height:100%;
+  background:#000;
+  overflow:hidden;
+  font-family:'Segoe UI',sans-serif;
+}
+
+/* START SCREEN */
+#start{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+#start h1{
+  color:white;
+  margin-bottom:25px;
+  font-size:38px;
+  animation:glow 4s infinite alternate;
+}
+button{
+  padding:18px 55px;
+  font-size:22px;
+  border:none;
+  border-radius:50px;
+  background:linear-gradient(45deg,#ff2f92,#ff7ad9);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 40px #ff4fd8;
+}
+button:hover{transform:scale(1.1)}
+
+@keyframes glow{
+  0%{text-shadow:0 0 20px #ff4fd8}
+  50%{text-shadow:0 0 25px #b84dff}
+  100%{text-shadow:0 0 20px #ff4fd8}
+}
+
+/* LOVE SCREEN */
+#love{
+  display:none;
+  width:100%;
+  height:100%;
+  position:relative;
+  background:#000;
+}
+
+/* MESSAGE */
+#msg{
+  position:absolute;
+  top:6%;
+  width:100%;
+  text-align:center;
+  color:white;
+  font-size:30px;
+  line-height:1.6;
+  animation:glow 4s infinite alternate;
+}
+
+/* HEART */
+#heart{
+  position:absolute;
+  width:600px;
+  height:550px;
+  top:55%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* WORDS */
+.word{
+  position:absolute;
+  font-size:14px;
+  color:#ff4fd8;
+  text-shadow:0 0 15px currentColor;
+  animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:.6}
+  50%{opacity:1}
+  100%{opacity:.6}
+}
+
+/* CENTER TEXT */
+#center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:60px;
+  font-weight:bold;
+  letter-spacing:6px;
+  color:#fff;
+  animation:centerGlow 4s infinite alternate;
+}
+
+@keyframes centerGlow{
+  0%{text-shadow:0 0 25px #ff4fd8}
+  50%{text-shadow:0 0 35px #b84dff}
+  100%{text-shadow:0 0 25px #ff4fd8}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music">
+  <source src="Wajah Tum Ho (Slowed Reverb) _ Armaan Malik _ Hate Story 3 _ SR Lofi(M4A_128K).m4a" type="audio/mpeg">
+</audio>
+
+<!-- START -->
+<div id="start">
+  <h1>For You ❤️</h1>
+  <button onclick="startLove()">Click</button>
+</div>
+
+<!-- LOVE -->
+<div id="love">
+  <div id="msg">
+    Wish you good 🌙<br>
+    I want you<br>
+    I love you
+  </div>
+
+  <div id="heart">
+    <div id="center">AMMAR</div>
+  </div>
+</div>
+
+<script>
+function startLove(){
+  document.getElementById("music").play();
+  document.getElementById("start").style.display="none";
+  document.getElementById("love").style.display="block";
+}
+
+/* PERFECT HEART FORMULA */
+const heart=document.getElementById("heart");
+const words=["I LOVE YOU","I WANT YOU"];
+const colors=["#ff4fd8","#b84dff","#ff3366"];
+
+for(let i=0;i<520;i++){
+  let w=document.createElement("div");
+  w.className="word";
+  w.innerText=words[i%2];
+  w.style.color=colors[i%3];
+
+  let t=Math.random()*Math.PI*2;
+  let x=16*Math.pow(Math.sin(t),3);
+  let y=13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t);
+
+  w.style.left=300+(x*16)+"px";
+  w.style.top=270-(y*16)+"px";
+
+  heart.appendChild(w);
+}
+</script>
+
+</body>
+</html>
